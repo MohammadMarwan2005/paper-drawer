@@ -4,7 +4,7 @@
 As part of my Data Structures and Algorithms 2 collage course, I developed an innovative Android app that tackles a fascinating problem:
 
 ## 📄 The Challenge:
-Any paper has a length and width. When we have multiple papers, how can we arrange them to form larger shapes, whether rectangular or not? For example:
+Any paper has a height and width. When we have multiple papers, how can we arrange them to form larger shapes, whether rectangular or not? For example:
 Paper A: [100, 50]
 Paper B: [50, 50]
 We can arrange them side-by-side: A[100, 50] | B[50, 50]
