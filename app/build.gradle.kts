@@ -1,11 +1,12 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    alias(libs.plugins.kotlin.compose)
 }
 
 android {
     namespace = "com.alaishat.mohammad.papersdrawerv3"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.alaishat.mohammad.papersdrawerv3"
@@ -63,12 +64,7 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
-
-
-    val navVersion = "2.7.7"
-
-    implementation("androidx.navigation:navigation-compose:$navVersion")
-
+    implementation(libs.androidx.navigation.compose)
     implementation(project(path = ":JavaLibrary"))
 
 
