@@ -2,6 +2,7 @@ package com.alaishat.mohammad.papersdrawerv3.common
 
 import com.alaishat.mohammad.papersdrawerv3.features.draw_papers.DrawPapersUIState
 import com.alaishat.mohammad.papersdrawerv3.features.draw_papers.ShowMessageEvent
+import com.alaishat.mohammad.papersdrawerv3.features.possible_papers.PossiblePapersUIState
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -20,5 +21,8 @@ object AppModule {
 
     @Provides
     fun provideDrawPapersUIStateDelegate(): StateDelegate<DrawPapersUIState> = StateDelegate()
+
+    @Provides
+    fun providePossiblePapersUIStateDelegate(): StateDelegate<PossiblePapersUIState> = StateDelegate()
 
 }

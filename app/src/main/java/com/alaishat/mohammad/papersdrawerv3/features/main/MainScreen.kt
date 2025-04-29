@@ -33,6 +33,7 @@ import com.alaishat.mohammad.littlelemonfinalassessment.Components.DrawerItem
 import com.alaishat.mohammad.papersdrawerv2.DrawYourPaper
 import com.alaishat.mohammad.papersdrawerv2.RectanglePossiblePapers
 import com.alaishat.mohammad.papersdrawerv3.features.draw_papers.DrawPapersScreen
+import com.alaishat.mohammad.papersdrawerv3.features.possible_papers.PossiblePapersScreen
 import com.alaishat.mohammad.papersdrawerv3.ui.theme.PapersDrawerV3Theme
 import kotlinx.coroutines.launch
 
@@ -115,15 +116,7 @@ fun MainScreen(modifier: Modifier = Modifier) {
                     DrawPapersScreen()
                 }
                 composable(RectanglePossiblePapers.route) {
-                    RectanglePossiblePapers(
-                        dataPapers = papers,
-                        onPaperAdded = {
-                            papers.add(it)
-                        },
-                        onPaperRemoved = {
-                            papers.removeAt(it)
-                        }
-                    )
+                    PossiblePapersScreen()
                 }
             }
 

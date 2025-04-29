@@ -1,5 +1,4 @@
-# paper-drawer
-## 🚀 Excited to share my latest project: Paper Drawer App! 📱
+# Paper Drawer App 📱
 
 As part of my Data Structures and Algorithms 2 collage course, I developed an innovative Android app that tackles a fascinating problem:
 

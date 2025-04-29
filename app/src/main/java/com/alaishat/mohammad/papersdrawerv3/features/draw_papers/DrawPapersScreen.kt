@@ -21,15 +21,14 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.alaishat.mohammad.papersdrawerv2.FullPaperItem
+import com.alaishat.mohammad.papersdrawerv3.composables.FullPaperItem
+import com.alaishat.mohammad.papersdrawerv3.composables.ShowMessageEventHandler
 
 /**
  * Created by Mohammad Al-Aishat on Apr/24/2025.
@@ -40,14 +39,9 @@ fun DrawPapersScreen(
     modifier: Modifier = Modifier,
     viewModel: DrawPapersViewModel = hiltViewModel()
 ) {
-    val context = LocalContext.current
     val state by viewModel.state.collectAsStateWithLifecycle()
 
-    LaunchedEffect(Unit) {
-        viewModel.viewEvent.collect { event ->
-            Toast.makeText(context, event.message, Toast.LENGTH_SHORT).show()
-        }
-    }
+    ShowMessageEventHandler(viewModel.viewEvent)
 
     Column(
         modifier = modifier

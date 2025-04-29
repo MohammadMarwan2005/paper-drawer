@@ -1,9 +1,5 @@
-package com.alaishat.mohammad.papersdrawerv2
+package com.alaishat.mohammad.papersdrawerv3.composables
 
-/**
- * Created by Mohammad Al-Aishat on Jun/10/2024.
- * Papers Drawer V2 Project.
- */
 
 
 import androidx.compose.foundation.BorderStroke
@@ -14,7 +10,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
@@ -40,9 +35,12 @@ import androidx.compose.ui.unit.dp
 import com.alaishat.mohammad.javalibrary.backend.BoxTree
 import com.alaishat.mohammad.javalibrary.backend.BoxTreeNode
 import com.alaishat.mohammad.papersdrawerv3.R
-import com.alaishat.mohammad.papersdrawerv3.composables.PaperCard
 import com.alaishat.mohammad.papersdrawerv3.ui.theme.PapersDrawerV3Theme
 
+/**
+ * Created by Mohammad Al-Aishat on Jun/10/2024.
+ * Papers Drawer V2 Project.
+ */
 @Composable
 fun FullPaperItem(
     modifier: Modifier = Modifier,
@@ -50,17 +48,15 @@ fun FullPaperItem(
     boxTree: BoxTree = BoxTree(
         BoxTreeNode('A', 50, 50)
     ),
-    onDelete: () -> Unit = {},
-    onRotate: () -> Unit = {},
+    onDelete: (() -> Unit)? = null,
+    onRotate: (() -> Unit)? = null,
 ) {
-    Box(
-        modifier = modifier.padding(vertical = 32.dp, horizontal = 2.dp),
-        contentAlignment = Alignment.TopCenter
+    Column(
+        modifier = modifier.verticalScroll(rememberScrollState()),
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Row(
-            modifier = modifier
-                .align(Alignment.TopEnd)
-                .offset(y = (-50).dp),
+            modifier = modifier,
             horizontalArrangement = Arrangement.End,
             verticalAlignment = Alignment.CenterVertically
         ) {
@@ -77,48 +73,46 @@ fun FullPaperItem(
                     color = MaterialTheme.colorScheme.error,
                     style = MaterialTheme.typography.bodySmall,
                 )
-            IconButton(
-                onClick = onDelete
-            ) {
-                Icon(imageVector = Icons.Default.Delete, contentDescription = "Delete!")
+            onDelete?.let {
+                IconButton(
+                    onClick = onDelete
+                ) {
+                    Icon(imageVector = Icons.Default.Delete, contentDescription = "Delete!")
+                }
             }
-            IconButton(
-                onClick = onRotate
-            ) {
-                Icon(imageVector = Icons.Default.Refresh, contentDescription = "Rotate!")
+            onRotate?.let {
+                IconButton(
+                    onClick = onRotate
+                ) {
+                    Icon(imageVector = Icons.Default.Refresh, contentDescription = "Rotate!")
+                }
             }
         }
-        Column(
-            modifier = modifier.verticalScroll(rememberScrollState()),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Box(
-                modifier = modifier
-                    .background(color = MaterialTheme.colorScheme.error.copy(alpha = 0.5f))
-                    .border(
-                        BorderStroke(
-                            width = 2.dp,
-                            color = MaterialTheme.colorScheme.onBackground
-                        )
+        Box(
+            modifier = modifier
+                .background(color = MaterialTheme.colorScheme.error.copy(alpha = 0.5f))
+                .border(
+                    BorderStroke(
+                        width = 2.dp,
+                        color = MaterialTheme.colorScheme.onBackground
                     )
-            ) {
-                PaperCard(
-                    modifier = modifier, boxTreeNode = boxTree.root,
-                    color =
-                        MaterialTheme.colorScheme.onBackground
                 )
-            }
-            SelectionContainer {
-                Text(
-                    modifier = modifier.width(300.dp),
-                    text = boxTree.root.exportNode(),
-                    textAlign = TextAlign.Center,
-                    style = MaterialTheme.typography.bodyMedium
-                )
-            }
+        ) {
+            PaperCard(
+                modifier = modifier, boxTreeNode = boxTree.root,
+                color =
+                    MaterialTheme.colorScheme.onBackground
+            )
+        }
+        SelectionContainer {
+            Text(
+                modifier = modifier.width(300.dp),
+                text = boxTree.root.exportNode(),
+                textAlign = TextAlign.Center,
+                style = MaterialTheme.typography.bodyMedium
+            )
         }
     }
-
 }
 
 @Preview(showBackground = true)
