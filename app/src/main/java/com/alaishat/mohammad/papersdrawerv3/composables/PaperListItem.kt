@@ -1,4 +1,4 @@
-package com.alaishat.mohammad.papersdrawerv2
+package com.alaishat.mohammad.papersdrawerv3.composables
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -26,8 +26,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.alaishat.mohammad.papersdrawerv3.components.LeadingCircle
-import com.alaishat.mohammad.papersdrawerv3.YourPaper
 import com.alaishat.mohammad.javalibrary.backend.BoxTreeNode
 import com.alaishat.mohammad.javalibrary.backend.DataPaper
 import com.alaishat.mohammad.papersdrawerv3.ui.theme.PapersDrawerV3Theme
@@ -64,11 +62,12 @@ fun PaperListItem(
     ) {
         if (alert) {
             AlertDialog(onDismissRequest = { alert = !alert }) {
-                YourPaper(modifier = Modifier, boxTreeNode = BoxTreeNode(
-                    dataPaper.value,
-                    dataPaper.height,
-                    dataPaper.width
-                )
+                PaperCard(
+                    modifier = Modifier, boxTreeNode = BoxTreeNode(
+                        dataPaper.value,
+                        dataPaper.height,
+                        dataPaper.width
+                    )
                 )
             }
         }
@@ -93,7 +92,7 @@ private fun PreviewPaperListItem() {
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.background
         ) {
-            PaperListItem{  }
+            PaperListItem { }
         }
     }
 }

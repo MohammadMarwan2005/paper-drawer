@@ -58,11 +58,12 @@ public class BoxTree {
             BoxTreeNode temp = root.left;
             root.left = root.right;
             root.right = temp;
-        }
-        else if (root.value == '-')
+        } else if (root.value == '-')
             root.value = '|';
 
         rotateRecursively(root.left);
         rotateRecursively(root.right);
     }
+
+    public final static String stringSample = "((A[100,100] | (B[100,100]|C[100,100])) - (D[150,150] | (E[75,150] - F[75,100])))";
 }

@@ -39,8 +39,10 @@ import androidx.compose.ui.unit.dp
 import com.alaishat.mohammad.javalibrary.backend.BoxTree
 import com.alaishat.mohammad.javalibrary.backend.DataPaper
 import com.alaishat.mohammad.javalibrary.backend.AllPossibleCasesSolution
+import com.alaishat.mohammad.papersdrawerv3.composables.PaperListItem
 import com.alaishat.mohammad.papersdrawerv3.ui.theme.PapersDrawerV3Theme
 
+// todo: refactor this
 @SuppressLint("MutableCollectionMutableState")
 @Composable
 fun RectanglePossiblePapers(
@@ -80,7 +82,7 @@ fun RectanglePossiblePapers(
             items(array.size) {
                 FullPaperItem(
                     modifier = modifier,
-                    it = it,
+                    index = it,
                     boxTree = array[it],
                     onDelete = { array.removeAt(it) },
                     onRotate = {

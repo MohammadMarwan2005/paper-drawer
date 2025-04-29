@@ -132,4 +132,8 @@ public class BoxTreeNode {
         }
         return null;
     }
+
+    public BoxTreeNode asAnotherInstance() {
+        return new BoxTreeNode(value, left, right);
+    }
 }

@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Papers Drawer V3</string>
+    <string name="this_is_a_full_rectangle_shape">This is a full-rectangle shape!</string>
+    <string name="added_successfully">Added Successfully!</string>
+    <string name="you_added_a_full_rectangle_shape">You Added a Full Rectangle Shape!</string>
+    <string name="you_added_a_non_rectangle_shape">You Added a Non Rectangle Shape!</string>
+    <string name="refacor_your_input_please">Refactor your input, please…</string>
 </resources>

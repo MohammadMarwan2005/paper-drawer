@@ -19,6 +19,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.selection.SelectionContainer
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Delete
@@ -32,61 +33,57 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.alaishat.mohammad.papersdrawerv3.YourPaper
 import com.alaishat.mohammad.javalibrary.backend.BoxTree
 import com.alaishat.mohammad.javalibrary.backend.BoxTreeNode
+import com.alaishat.mohammad.papersdrawerv3.R
+import com.alaishat.mohammad.papersdrawerv3.composables.PaperCard
 import com.alaishat.mohammad.papersdrawerv3.ui.theme.PapersDrawerV3Theme
 
 @Composable
 fun FullPaperItem(
     modifier: Modifier = Modifier,
-    it: Int = 0,
+    index: Int = 0,
     boxTree: BoxTree = BoxTree(
         BoxTreeNode('A', 50, 50)
     ),
     onDelete: () -> Unit = {},
     onRotate: () -> Unit = {},
 ) {
-    Box(modifier = modifier.padding(32.dp), contentAlignment = Alignment.TopCenter) {
+    Box(
+        modifier = modifier.padding(vertical = 32.dp, horizontal = 2.dp),
+        contentAlignment = Alignment.TopCenter
+    ) {
         Row(
             modifier = modifier
                 .align(Alignment.TopEnd)
-                .offset(x = 30.dp, y = (-50).dp),
+                .offset(y = (-50).dp),
             horizontalArrangement = Arrangement.End,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            NumberComp(it = it)
+            NumberComp(it = index)
             if (boxTree.isRectangle)
                 Text(
-                    text = "This is a full-rectangle shape!",
+                    text = stringResource(R.string.this_is_a_full_rectangle_shape),
                     color = MaterialTheme.colorScheme.onBackground,
-                    style = MaterialTheme.typography.bodyMedium,
+                    style = MaterialTheme.typography.bodySmall,
                 )
             else
                 Text(
                     text = "This is not a full-rectangle shape!",
                     color = MaterialTheme.colorScheme.error,
-                    style = MaterialTheme.typography.bodyMedium,
+                    style = MaterialTheme.typography.bodySmall,
                 )
             IconButton(
                 onClick = onDelete
-//                {
-////                    array.removeAt(it)
-//                }
             ) {
                 Icon(imageVector = Icons.Default.Delete, contentDescription = "Delete!")
             }
             IconButton(
                 onClick = onRotate
-//                {
-//                    val newRoot = array[it].rotate()
-//                    array[it] = BoxTree(newRoot)
-////                                array.add(BoxTree(newRoot))
-////                                array.remove(array[it])
-//                }
             ) {
                 Icon(imageVector = Icons.Default.Refresh, contentDescription = "Rotate!")
             }
@@ -101,27 +98,24 @@ fun FullPaperItem(
                     .border(
                         BorderStroke(
                             width = 2.dp,
-                            color =
-//                                        if (it.isRectangle)
-                            MaterialTheme.colorScheme.onBackground
-//                                        else MaterialTheme.colorScheme.error
+                            color = MaterialTheme.colorScheme.onBackground
                         )
                     )
             ) {
-                YourPaper(
+                PaperCard(
                     modifier = modifier, boxTreeNode = boxTree.root,
                     color =
-//                                    if (it.isRectangle)
-                    MaterialTheme.colorScheme.onBackground
-//                                    else MaterialTheme.colorScheme.error
+                        MaterialTheme.colorScheme.onBackground
                 )
             }
-            Text(
-                modifier = modifier.width(300.dp),
-                text = boxTree.root.exportNode(),
-                textAlign = TextAlign.Center,
-                style = MaterialTheme.typography.bodyMedium
-            )
+            SelectionContainer {
+                Text(
+                    modifier = modifier.width(300.dp),
+                    text = boxTree.root.exportNode(),
+                    textAlign = TextAlign.Center,
+                    style = MaterialTheme.typography.bodyMedium
+                )
+            }
         }
     }
 
@@ -149,8 +143,7 @@ fun NumberComp(it: Int) {
             .padding(4.dp)
             .clip(RoundedCornerShape(8.dp))
             .background(color = MaterialTheme.colorScheme.surfaceVariant)
-            .padding(vertical = 4.dp, horizontal = 8.dp)
-        ,
+            .padding(vertical = 4.dp, horizontal = 8.dp),
         contentAlignment = Alignment.Center
     ) {
         Text(

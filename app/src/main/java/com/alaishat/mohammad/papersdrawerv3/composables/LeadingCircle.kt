@@ -1,4 +1,4 @@
-package com.alaishat.mohammad.papersdrawerv3.components
+package com.alaishat.mohammad.papersdrawerv3.composables
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
